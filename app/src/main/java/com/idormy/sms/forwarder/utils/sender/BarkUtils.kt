@@ -67,8 +67,16 @@ class BarkUtils {
             if (!TextUtils.isEmpty(setting.level)) msgMap["level"] = setting.level
             if (!TextUtils.isEmpty(setting.sound)) msgMap["sound"] = setting.sound
             if (!TextUtils.isEmpty(setting.badge)) msgMap["badge"] = setting.badge
-            if (!TextUtils.isEmpty(setting.url)) msgMap["url"] = setting.url
-            if (!TextUtils.isEmpty(setting.call)) msgMap["call"] = setting.call
+            if (!TextUtils.isEmpty(setting.url)) {
+                val replacedUrl = msgInfo.getContentForSend(setting.url)
+                 msgMap["url"] = replacedUrl
+            }
+
+            if (!TextUtils.isEmpty(setting.call)) {
+                val replacedCall = msgInfo.getContentForSend(setting.call)
+                msgMap["call"] = replacedCall
+            }
+
 
             //自动复制
             if (TextUtils.isEmpty(setting.autoCopy)) {
